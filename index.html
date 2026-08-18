@@ -1,213 +1,467 @@
-<div class="product">
-  <div style="font-size:100px;">📱</div>
-  <h3>Smartphone</h3>
-  <p class="price">₹9,999</p>
-  <button class="add">Add to Cart</button>
-</div>
-
-<div class="product">
-  <div style="font-size:100px;">🎧</div>
-  <h3>Headphones</h3>
-  <p class="price">₹799</p>
-  <button class="add">Add to Cart</button>
-</div>
-
-<div class="product">
-  <div style="font-size:100px;">⌚</div>
-  <h3>Smart Watch</h3>
-  <p class="price">₹1,499</p>
-  <button class="add">Add to Cart</button>
-</div>
-
-<div class="product">
-  <div style="font-size:100px;">👟</div>
-  <h3>Sports Shoes</h3>
-  <p class="price">₹1,299</p>
-  <button class="add">Add to Cart</button>
-</div>
-
-<div class="product">
-  <div style="font-size:100px;">👕</div>
-  <h3>T-Shirt</h3>
-  <p class="price">₹499</p>
-  <button class="add">Add to Cart</button>
-</div>
-
-<div class="product">
-  <div style="font-size:100px;">🎒</div>
-  <h3>Backpack</h3>
-  <p class="price">₹699</p>
-  <button class="add">Add to Cart</button>
-</div>
-
-</section><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>K Mart - Online Shopping</title>
+<title>K--Mart | Online Shopping</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#f4f6f8;color:#222}
-header{background:#2874f0;color:white;padding:15px;text-align:center;position:sticky;top:0;z-index:10}
-.logo{font-size:28px;font-weight:bold}
-.search{margin-top:12px;width:90%;max-width:600px;padding:12px;border:0;border-radius:6px;font-size:16px}
-.cart-btn{margin-top:12px;background:#ff9f00;padding:10px 18px;border:0;border-radius:5px;color:white;font-weight:bold}
-.categories{text-align:center;padding:15px;background:white}
-.categories button{margin:5px;padding:9px 14px;border:1px solid #2874f0;background:white;color:#2874f0;border-radius:20px}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:15px;padding:20px;max-width:1100px;margin:auto}
-.product{background:white;padding:15px;border-radius:10px;text-align:center;box-shadow:0 2px 8px #ddd}
-.product img{width:100%;height:150px;object-fit:contain;border-radius:8px}
-.product h3{margin:10px 0}
-.price{font-size:19px;font-weight:bold;color:#e53935;margin:8px}
-.add{background:#ff9f00;color:white;border:0;padding:10px 15px;border-radius:5px;font-weight:bold}
-.cart{background:white;margin:10px auto;padding:20px;max-width:600px;border-radius:10px}
-.checkout{background:white;margin:20px auto;padding:20px;max-width:600px;border-radius:10px}
-.checkout input,.checkout textarea{width:100%;padding:12px;margin:7px 0;border:1px solid #ccc;border-radius:5px}
-.order{background:#2874f0;color:white;border:0;padding:12px 20px;border-radius:5px;font-weight:bold}
-footer{background:#172337;color:white;text-align:center;padding:25px;margin-top:30px}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f1f3f6;
+  color: #222;
+}
+
+header {
+  background: #2874f0;
+  color: white;
+  padding: 14px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.top {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.search {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 3px;
+  font-size: 15px;
+  outline: none;
+}
+
+.cart {
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.banner {
+  max-width: 1100px;
+  margin: 15px auto;
+  padding: 25px;
+  background: white;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.banner h1 {
+  color: #2874f0;
+  margin-bottom: 8px;
+}
+
+.products {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 15px;
+  padding: 10px;
+}
+
+.product {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 1px 5px #ccc;
+}
+
+.product-img {
+  font-size: 80px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product h3 {
+  margin: 10px 0;
+}
+
+.price {
+  color: #e53935;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 8px;
+}
+
+.buy {
+  width: 100%;
+  padding: 12px;
+  background: #ff9f00;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.buy:hover {
+  background: #fb8c00;
+}
+
+#checkout {
+  display: none;
+  max-width: 650px;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+#checkout h2 {
+  color: #2874f0;
+  margin-bottom: 15px;
+}
+
+.order-box {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.form-group textarea {
+  height: 90px;
+  resize: vertical;
+}
+
+.payment {
+  margin: 15px 0;
+}
+
+.payment label {
+  display: block;
+  padding: 10px;
+  background: #f5f5f5;
+  margin: 6px 0;
+  border-radius: 5px;
+}
+
+.place-order {
+  width: 100%;
+  padding: 14px;
+  background: #2874f0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.back {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  background: #ddd;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#success {
+  display: none;
+  text-align: center;
+  padding: 30px;
+}
+
+#success h2 {
+  color: green;
+  margin-bottom: 10px;
+}
+
+footer {
+  margin-top: 25px;
+  background: #172337;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+@media (max-width: 600px) {
+  .top {
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    width: 100%;
+    text-align: center;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .cart {
+    display: none;
+  }
+}
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">🛒 K MART</div>
-  <p>Online Shopping Made Easy</p>
+  <div class="top">
+    <div class="logo">K--Mart 🛍️</div>
 
-  <input class="search" id="search"
-  placeholder="Search products..."
-  onkeyup="searchProducts()">
+    <input
+      class="search"
+      type="text"
+      id="search"
+      placeholder="Search products..."
+      onkeyup="searchProducts()"
+    >
 
-  <br>
-  <button class="cart-btn" onclick="showCart()">
-    🛒 Cart (<span id="cartCount">0</span>)
-  </button>
+    <div class="cart">🛒 K--Mart</div>
+  </div>
 </header>
 
-<div class="categories">
-  <button onclick="filterProducts('all')">All</button>
-  <button onclick="filterProducts('mobile')">Mobiles</button>
-  <button onclick="filterProducts('fashion')">Fashion</button>
-  <button onclick="filterProducts('electronics')">Electronics</button>
+<div id="shop">
+
+  <div class="banner">
+    <h1>Welcome to K--Mart 🛍️</h1>
+    <p>Online Shopping Made Easy</p>
+  </div>
+
+  <div class="products" id="products">
+
+    <div class="product" data-name="Smartphone">
+      <div class="product-img">📱</div>
+      <h3>Smartphone</h3>
+      <p class="price">₹9,999</p>
+      <button class="buy" onclick="buyNow('Smartphone','9,999')">
+        Buy Now
+      </button>
+    </div>
+
+    <div class="product" data-name="Headphones">
+      <div class="product-img">🎧</div>
+      <h3>Headphones</h3>
+      <p class="price">₹799</p>
+      <button class="buy" onclick="buyNow('Headphones','799')">
+        Buy Now
+      </button>
+    </div>
+
+    <div class="product" data-name="Smart Watch">
+      <div class="product-img">⌚</div>
+      <h3>Smart Watch</h3>
+      <p class="price">₹1,499</p>
+      <button class="buy" onclick="buyNow('Smart Watch','1,499')">
+        Buy Now
+      </button>
+    </div>
+
+    <div class="product" data-name="Laptop">
+      <div class="product-img">💻</div>
+      <h3>Laptop</h3>
+      <p class="price">₹39,999</p>
+      <button class="buy" onclick="buyNow('Laptop','39,999')">
+        Buy Now
+      </button>
+    </div>
+
+    <div class="product" data-name="Shoes">
+      <div class="product-img">👟</div>
+      <h3>Sports Shoes</h3>
+      <p class="price">₹1,299</p>
+      <button class="buy" onclick="buyNow('Sports Shoes','1,299')">
+        Buy Now
+      </button>
+    </div>
+
+    <div class="product" data-name="Backpack">
+      <div class="product-img">🎒</div>
+      <h3>Backpack</h3>
+      <p class="price">₹899</p>
+      <button class="buy" onclick="buyNow('Backpack','899')">
+        Buy Now
+      </button>
+    </div>
+
+  </div>
 </div>
 
-<section class="products" id="products">
+<div id="checkout">
 
-<div class="product" data-category="mobile">
-<img src="https://via.placeholder.com/300x200?text=Smartphone">
-<h3>Smartphone</h3>
-<p class="price">₹9,999</p>
-<button class="add" onclick="addToCart('Smartphone',9999)">Add to Cart</button>
+  <h2>🛒 Checkout</h2>
+
+  <div class="order-box">
+    <p><b>Product:</b> <span id="orderProduct"></span></p>
+    <p><b>Price:</b> ₹<span id="orderPrice"></span></p>
+  </div>
+
+  <div class="form-group">
+    <label>Your Name</label>
+    <input type="text" id="name" placeholder="Enter your name">
+  </div>
+
+  <div class="form-group">
+    <label>Mobile Number</label>
+    <input type="tel" id="mobile" placeholder="Enter mobile number">
+  </div>
+
+  <div class="form-group">
+    <label>Delivery Address</label>
+    <textarea id="address" placeholder="Enter complete delivery address"></textarea>
+  </div>
+
+  <div class="payment">
+    <b>Payment Method</b>
+
+    <label>
+      <input type="radio" name="payment" value="UPI" checked>
+      UPI
+    </label>
+
+    <label>
+      <input type="radio" name="payment" value="Card">
+      Debit / Credit Card
+    </label>
+
+    <label>
+      <input type="radio" name="payment" value="COD">
+      Cash on Delivery
+    </label>
+  </div>
+
+  <button class="place-order" onclick="placeOrder()">
+    Place Order
+  </button>
+
+  <button class="back" onclick="goBack()">
+    ← Continue Shopping
+  </button>
+
 </div>
 
-<div class="product" data-category="electronics">
-<img src="https://via.placeholder.com/300x200?text=Headphones">
-<h3>Headphones</h3>
-<p class="price">₹799</p>
-<button class="add" onclick="addToCart('Headphones',799)">Add to Cart</button>
+<div id="success">
+  <h2>✅ Order Placed!</h2>
+  <p>Thank you for shopping with K--Mart.</p>
+  <br>
+  <button class="buy" onclick="goBack()">Back to Shopping</button>
 </div>
-
-<div class="product" data-category="electronics">
-<img src="https://via.placeholder.com/300x200?text=Smart+Watch">
-<h3>Smart Watch</h3>
-<p class="price">₹1,499</p>
-<button class="add" onclick="addToCart('Smart Watch',1499)">Add to Cart</button>
-</div>
-
-<div class="product" data-category="fashion">
-<img src="https://via.placeholder.com/300x200?text=Shoes">
-<h3>Sports Shoes</h3>
-<p class="price">₹1,299</p>
-<button class="add" onclick="addToCart('Sports Shoes',1299)">Add to Cart</button>
-</div>
-
-<div class="product" data-category="fashion">
-<img src="https://via.placeholder.com/300x200?text=T-Shirt">
-<h3>T-Shirt</h3>
-<p class="price">₹499</p>
-<button class="add" onclick="addToCart('T-Shirt',499)">Add to Cart</button>
-</div>
-
-<div class="product" data-category="fashion">
-<img src="https://via.placeholder.com/300x200?text=Backpack">
-<h3>Backpack</h3>
-<p class="price">₹699</p>
-<button class="add" onclick="addToCart('Backpack',699)">Add to Cart</button>
-</div>
-
-</section>
-
-<section class="cart" id="cart">
-<h2>🛒 Your Cart</h2>
-<p>Items: <b id="cartCount2">0</b></p>
-<p>Total: <b>₹<span id="cartTotal">0</span></b></p>
-</section>
-
-<section class="checkout">
-<h2>📦 Place Your Order</h2>
-
-<input id="name" placeholder="Your Name">
-<input id="phone" placeholder="Phone Number">
-<textarea id="address" placeholder="Delivery Address"></textarea>
-
-<button class="order" onclick="placeOrder()">Place Order</button>
-</section>
 
 <footer>
-<p>© 2026 K Mart</p>
-<p>Online Shopping Website</p>
+  <p>© 2026 K--Mart | Online Shopping</p>
 </footer>
 
 <script>
-let cartCount=0;
-let cartTotal=0;
 
-function addToCart(name,price){
-cartCount++;
-cartTotal+=price;
-document.getElementById("cartCount").innerText=cartCount;
-document.getElementById("cartCount2").innerText=cartCount;
-document.getElementById("cartTotal").innerText=cartTotal;
-alert(name+" added to cart!");
+let selectedProduct = "";
+let selectedPrice = "";
+
+function buyNow(product, price) {
+  selectedProduct = product;
+  selectedPrice = price;
+
+  document.getElementById("shop").style.display = "none";
+  document.getElementById("checkout").style.display = "block";
+  document.getElementById("success").style.display = "none";
+
+  document.getElementById("orderProduct").innerText = product;
+  document.getElementById("orderPrice").innerText = price;
+
+  window.scrollTo(0, 0);
 }
 
-function showCart(){
-document.getElementById("cart").scrollIntoView({behavior:"smooth"});
+function placeOrder() {
+
+  let name = document.getElementById("name").value.trim();
+  let mobile = document.getElementById("mobile").value.trim();
+  let address = document.getElementById("address").value.trim();
+
+  if (name === "" || mobile === "" || address === "") {
+    alert("Please fill all delivery details.");
+    return;
+  }
+
+  let payment = document.querySelector(
+    'input[name="payment"]:checked'
+  ).value;
+
+  alert(
+    "Order details saved!\n\n" +
+    "Product: " + selectedProduct +
+    "\nPrice: ₹" + selectedPrice +
+    "\nPayment: " + payment
+  );
+
+  document.getElementById("checkout").style.display = "none";
+  document.getElementById("success").style.display = "block";
+
+  window.scrollTo(0, 0);
 }
 
-function searchProducts(){
-let text=document.getElementById("search").value.toLowerCase();
-document.querySelectorAll(".product").forEach(p=>{
-let name=p.querySelector("h3").innerText.toLowerCase();
-p.style.display=name.includes(text)?"block":"none";
-});
+function goBack() {
+  document.getElementById("checkout").style.display = "none";
+  document.getElementById("success").style.display = "none";
+  document.getElementById("shop").style.display = "block";
+
+  window.scrollTo(0, 0);
 }
 
-function filterProducts(category){
-document.querySelectorAll(".product").forEach(p=>{
-p.style.display=(category==="all"||p.dataset.category===category)?"block":"none";
-});
+function searchProducts() {
+
+  let search = document.getElementById("search").value.toLowerCase();
+  let products = document.querySelectorAll(".product");
+
+  products.forEach(function(product) {
+
+    let name = product.getAttribute("data-name").toLowerCase();
+
+    if (name.includes(search)) {
+      product.style.display = "block";
+    } else {
+      product.style.display = "none";
+    }
+
+  });
 }
 
-function placeOrder(){
-let name=document.getElementById("name").value;
-let phone=document.getElementById("phone").value;
-let address=document.getElementById("address").value;
-
-if(!name||!phone||!address){
-alert("Please fill all delivery details.");
-return;
-}
-
-if(cartCount===0){
-alert("Please add a product to your cart first.");
-return;
-}
-
-alert("Order received! Thank you for shopping with K Mart.");
-}
 </script>
 
 </body>
