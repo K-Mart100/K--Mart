@@ -6,237 +6,57 @@
 <title>K--Mart | Online Shopping</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#f1f3f6;color:#222}
+header{background:#2874f0;color:white;padding:14px;position:sticky;top:0;z-index:10}
+.top{max-width:1100px;margin:auto;display:flex;align-items:center;gap:10px}
+.logo{font-size:24px;font-weight:bold;white-space:nowrap}
+.search{flex:1;padding:12px;border:none;border-radius:5px;font-size:15px}
+.cartBtn,.sellerBtn{padding:10px 12px;border:0;border-radius:5px;cursor:pointer;font-weight:bold}
+.cartBtn{background:white;color:#2874f0}
+.sellerBtn{background:#ff9f00;color:white}
 
-body {
-  background: #f1f3f6;
-  color: #222;
-}
+.banner{max-width:1100px;margin:15px auto;padding:25px;background:white;text-align:center;border-radius:8px}
+.banner h1{color:#2874f0;margin-bottom:8px}
 
-header {
-  background: #2874f0;
-  color: white;
-  padding: 14px;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
+.products{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px;padding:10px}
+.product{background:white;padding:15px;border-radius:8px;text-align:center;box-shadow:0 1px 5px #ccc}
+.product-img{font-size:70px;height:100px;display:flex;align-items:center;justify-content:center}
+.product h3{margin:8px 0}
+.price{color:#e53935;font-size:20px;font-weight:bold;margin:8px}
+.buy,.addCart{width:100%;padding:11px;border:0;border-radius:5px;font-size:15px;font-weight:bold;cursor:pointer;margin-top:6px}
+.buy{background:#ff9f00;color:white}
+.addCart{background:#2874f0;color:white}
 
-.top {
-  max-width: 1100px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+#cart,#checkout,#seller,#success{display:none;max-width:700px;margin:20px auto;background:white;padding:20px;border-radius:8px}
+h2{color:#2874f0;margin-bottom:15px}
 
-.logo {
-  font-size: 25px;
-  font-weight: bold;
-  white-space: nowrap;
-}
+.cartItem{display:flex;align-items:center;gap:10px;padding:12px;border-bottom:1px solid #ddd}
+.cartItem .itemInfo{flex:1}
+.delete{background:#e53935;color:white;border:0;padding:8px;border-radius:5px;cursor:pointer}
+.cartTotal{font-size:20px;font-weight:bold;margin:15px 0}
+.actionBtn{width:100%;padding:13px;border:0;border-radius:5px;margin-top:8px;font-size:16px;font-weight:bold;cursor:pointer}
+.checkoutBtn{background:#2874f0;color:white}
+.back{background:#ddd}
 
-.search {
-  flex: 1;
-  padding: 12px;
-  border: none;
-  border-radius: 3px;
-  font-size: 15px;
-  outline: none;
-}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-weight:bold;margin-bottom:6px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:12px;border:1px solid #ccc;border-radius:5px;font-size:15px}
+.form-group textarea{height:90px}
 
-.cart {
-  font-size: 15px;
-  white-space: nowrap;
-}
+.payment label{display:block;padding:10px;background:#f5f5f5;margin:6px 0;border-radius:5px}
 
-.banner {
-  max-width: 1100px;
-  margin: 15px auto;
-  padding: 25px;
-  background: white;
-  text-align: center;
-  border-radius: 8px;
-}
+.place-order{width:100%;padding:14px;background:#2874f0;color:white;border:0;border-radius:5px;font-size:17px;font-weight:bold}
 
-.banner h1 {
-  color: #2874f0;
-  margin-bottom: 8px;
-}
+#success{text-align:center}
+#success h2{color:green}
 
-.products {
-  max-width: 1100px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 15px;
-  padding: 10px;
-}
+footer{margin-top:25px;background:#172337;color:white;text-align:center;padding:20px}
 
-.product {
-  background: white;
-  padding: 15px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 1px 5px #ccc;
-}
-
-.product-img {
-  font-size: 80px;
-  height: 110px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.product h3 {
-  margin: 10px 0;
-}
-
-.price {
-  color: #e53935;
-  font-size: 20px;
-  font-weight: bold;
-  margin: 8px;
-}
-
-.buy {
-  width: 100%;
-  padding: 12px;
-  background: #ff9f00;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.buy:hover {
-  background: #fb8c00;
-}
-
-#checkout {
-  display: none;
-  max-width: 650px;
-  margin: 20px auto;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-#checkout h2 {
-  color: #2874f0;
-  margin-bottom: 15px;
-}
-
-.order-box {
-  background: #f5f5f5;
-  padding: 15px;
-  border-radius: 6px;
-  margin-bottom: 15px;
-}
-
-.form-group {
-  margin-bottom: 14px;
-}
-
-.form-group label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 6px;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 15px;
-}
-
-.form-group textarea {
-  height: 90px;
-  resize: vertical;
-}
-
-.payment {
-  margin: 15px 0;
-}
-
-.payment label {
-  display: block;
-  padding: 10px;
-  background: #f5f5f5;
-  margin: 6px 0;
-  border-radius: 5px;
-}
-
-.place-order {
-  width: 100%;
-  padding: 14px;
-  background: #2874f0;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.back {
-  width: 100%;
-  margin-top: 10px;
-  padding: 12px;
-  background: #ddd;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#success {
-  display: none;
-  text-align: center;
-  padding: 30px;
-}
-
-#success h2 {
-  color: green;
-  margin-bottom: 10px;
-}
-
-footer {
-  margin-top: 25px;
-  background: #172337;
-  color: white;
-  text-align: center;
-  padding: 20px;
-}
-
-@media (max-width: 600px) {
-  .top {
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    width: 100%;
-    text-align: center;
-  }
-
-  .search {
-    width: 100%;
-  }
-
-  .cart {
-    display: none;
-  }
+@media(max-width:600px){
+.top{flex-wrap:wrap}
+.logo{width:100%;text-align:center}
+.search{width:100%}
 }
 </style>
 </head>
@@ -244,225 +64,503 @@ footer {
 <body>
 
 <header>
-  <div class="top">
-    <div class="logo">K--Mart 🛍️</div>
+<div class="top">
+<div class="logo">K--Mart 🛍️</div>
 
-    <input
-      class="search"
-      type="text"
-      id="search"
-      placeholder="Search products..."
-      onkeyup="searchProducts()"
-    >
+<input class="search" id="search" type="text"
+placeholder="Search products..." onkeyup="searchProducts()">
 
-    <div class="cart">🛒 K--Mart</div>
-  </div>
+<button class="cartBtn" onclick="showCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+
+<button class="sellerBtn" onclick="sellerLogin()">👨‍💼 Seller</button>
+</div>
 </header>
 
+<!-- SHOP -->
 <div id="shop">
 
-  <div class="banner">
-    <h1>Welcome to K--Mart 🛍️</h1>
-    <p>Online Shopping Made Easy</p>
-  </div>
-
-  <div class="products" id="products">
-
-    <div class="product" data-name="Smartphone">
-      <div class="product-img">📱</div>
-      <h3>Smartphone</h3>
-      <p class="price">₹9,999</p>
-      <button class="buy" onclick="buyNow('Smartphone','9,999')">
-        Buy Now
-      </button>
-    </div>
-
-    <div class="product" data-name="Headphones">
-      <div class="product-img">🎧</div>
-      <h3>Headphones</h3>
-      <p class="price">₹799</p>
-      <button class="buy" onclick="buyNow('Headphones','799')">
-        Buy Now
-      </button>
-    </div>
-
-    <div class="product" data-name="Smart Watch">
-      <div class="product-img">⌚</div>
-      <h3>Smart Watch</h3>
-      <p class="price">₹1,499</p>
-      <button class="buy" onclick="buyNow('Smart Watch','1,499')">
-        Buy Now
-      </button>
-    </div>
-
-    <div class="product" data-name="Laptop">
-      <div class="product-img">💻</div>
-      <h3>Laptop</h3>
-      <p class="price">₹39,999</p>
-      <button class="buy" onclick="buyNow('Laptop','39,999')">
-        Buy Now
-      </button>
-    </div>
-
-    <div class="product" data-name="Shoes">
-      <div class="product-img">👟</div>
-      <h3>Sports Shoes</h3>
-      <p class="price">₹1,299</p>
-      <button class="buy" onclick="buyNow('Sports Shoes','1,299')">
-        Buy Now
-      </button>
-    </div>
-
-    <div class="product" data-name="Backpack">
-      <div class="product-img">🎒</div>
-      <h3>Backpack</h3>
-      <p class="price">₹899</p>
-      <button class="buy" onclick="buyNow('Backpack','899')">
-        Buy Now
-      </button>
-    </div>
-
-  </div>
+<div class="banner">
+<h1>Welcome to K--Mart 🛍️</h1>
+<p>Online Shopping Made Easy</p>
 </div>
 
+<div class="products" id="products"></div>
+
+</div>
+
+<!-- CART -->
+<div id="cart">
+
+<h2>🛒 My Cart</h2>
+
+<label>
+<input type="checkbox" id="selectAll" onchange="selectAllItems(this.checked)">
+<b>Select All</b>
+</label>
+
+<div id="cartItems"></div>
+
+<div class="cartTotal">
+Total: ₹<span id="cartTotal">0</span>
+</div>
+
+<button class="actionBtn checkoutBtn" onclick="cartCheckout()">
+⚡ Buy Selected
+</button>
+
+<button class="actionBtn" style="background:#e53935;color:white" onclick="deleteSelected()">
+🗑️ Delete Selected
+</button>
+
+<button class="actionBtn back" onclick="goShop()">
+← Continue Shopping
+</button>
+
+</div>
+
+<!-- CHECKOUT -->
 <div id="checkout">
 
-  <h2>🛒 Checkout</h2>
+<h2>🛒 Checkout</h2>
 
-  <div class="order-box">
-    <p><b>Product:</b> <span id="orderProduct"></span></p>
-    <p><b>Price:</b> ₹<span id="orderPrice"></span></p>
-  </div>
+<div id="checkoutItems" class="cartTotal"></div>
 
-  <div class="form-group">
-    <label>Your Name</label>
-    <input type="text" id="name" placeholder="Enter your name">
-  </div>
+<div class="form-group">
+<label>Your Name</label>
+<input id="name" type="text" placeholder="Enter your name">
+</div>
 
-  <div class="form-group">
-    <label>Mobile Number</label>
-    <input type="tel" id="mobile" placeholder="Enter mobile number">
-  </div>
+<div class="form-group">
+<label>Mobile Number</label>
+<input id="mobile" type="tel" placeholder="Enter mobile number">
+</div>
 
-  <div class="form-group">
-    <label>Delivery Address</label>
-    <textarea id="address" placeholder="Enter complete delivery address"></textarea>
-  </div>
+<div class="form-group">
+<label>Delivery Address</label>
+<textarea id="address" placeholder="Enter complete delivery address"></textarea>
+</div>
 
-  <div class="payment">
-    <b>Payment Method</b>
+<div class="payment">
+<b>Payment Method</b>
 
-    <label>
-      <input type="radio" name="payment" value="UPI" checked>
-      UPI
-    </label>
+<label><input type="radio" name="payment" value="UPI" checked> UPI</label>
+<label><input type="radio" name="payment" value="Card"> Debit / Credit Card</label>
+<label><input type="radio" name="payment" value="COD"> Cash on Delivery</label>
+</div>
 
-    <label>
-      <input type="radio" name="payment" value="Card">
-      Debit / Credit Card
-    </label>
+<button class="place-order" onclick="placeOrder()">
+Place Order
+</button>
 
-    <label>
-      <input type="radio" name="payment" value="COD">
-      Cash on Delivery
-    </label>
-  </div>
-
-  <button class="place-order" onclick="placeOrder()">
-    Place Order
-  </button>
-
-  <button class="back" onclick="goBack()">
-    ← Continue Shopping
-  </button>
+<button class="actionBtn back" onclick="showCart()">
+← Back to Cart
+</button>
 
 </div>
 
+<!-- SELLER -->
+<div id="seller">
+
+<h2>👨‍💼 K--Mart Seller Panel</h2>
+
+<div class="form-group">
+<label>Product Name</label>
+<input id="productName" placeholder="Example: T-Shirt">
+</div>
+
+<div class="form-group">
+<label>Price ₹</label>
+<input id="productPrice" type="number" placeholder="Example: 499">
+</div>
+
+<div class="form-group">
+<label>Product Emoji</label>
+<input id="productEmoji" placeholder="Example: 👕">
+</div>
+
+<button class="actionBtn checkoutBtn" onclick="addProduct()">
+➕ Add Product
+</button>
+
+<h3 style="margin-top:20px">Your Products</h3>
+
+<div id="sellerProducts"></div>
+
+<button class="actionBtn back" onclick="goShop()">
+← Back to Shop
+</button>
+
+</div>
+
+<!-- SUCCESS -->
 <div id="success">
-  <h2>✅ Order Placed!</h2>
-  <p>Thank you for shopping with K--Mart.</p>
-  <br>
-  <button class="buy" onclick="goBack()">Back to Shopping</button>
+
+<h2>✅ Order Placed!</h2>
+<p>Thank you for shopping with K--Mart.</p>
+<br>
+
+<button class="buy actionBtn" onclick="goShop()">
+Back to Shopping
+</button>
+
 </div>
 
 <footer>
-  <p>© 2026 K--Mart | Online Shopping</p>
+<p>© 2026 K--Mart | Online Shopping</p>
 </footer>
 
 <script>
 
-let selectedProduct = "";
-let selectedPrice = "";
+let products = [
+{name:"Smartphone",price:9999,emoji:"📱"},
+{name:"Headphones",price:799,emoji:"🎧"},
+{name:"Smart Watch",price:1499,emoji:"⌚"},
+{name:"Laptop",price:39999,emoji:"💻"},
+{name:"Sports Shoes",price:1299,emoji:"👟"},
+{name:"Backpack",price:899,emoji:"🎒"}
+];
 
-function buyNow(product, price) {
-  selectedProduct = product;
-  selectedPrice = price;
+let cart = [];
 
-  document.getElementById("shop").style.display = "none";
-  document.getElementById("checkout").style.display = "block";
-  document.getElementById("success").style.display = "none";
-
-  document.getElementById("orderProduct").innerText = product;
-  document.getElementById("orderPrice").innerText = price;
-
-  window.scrollTo(0, 0);
+function money(n){
+return Number(n).toLocaleString("en-IN");
 }
 
-function placeOrder() {
+function renderProducts(){
 
-  let name = document.getElementById("name").value.trim();
-  let mobile = document.getElementById("mobile").value.trim();
-  let address = document.getElementById("address").value.trim();
+let box=document.getElementById("products");
+box.innerHTML="";
 
-  if (name === "" || mobile === "" || address === "") {
-    alert("Please fill all delivery details.");
-    return;
-  }
+products.forEach((p,i)=>{
 
-  let payment = document.querySelector(
-    'input[name="payment"]:checked'
-  ).value;
+box.innerHTML+=`
+<div class="product" data-name="${p.name.toLowerCase()}">
 
-  alert(
-    "Order details saved!\n\n" +
-    "Product: " + selectedProduct +
-    "\nPrice: ₹" + selectedPrice +
-    "\nPayment: " + payment
-  );
+<div class="product-img">${p.emoji}</div>
 
-  document.getElementById("checkout").style.display = "none";
-  document.getElementById("success").style.display = "block";
+<h3>${p.name}</h3>
 
-  window.scrollTo(0, 0);
+<p class="price">₹${money(p.price)}</p>
+
+<button class="buy" onclick="buyNow(${i})">
+⚡ Buy Now
+</button>
+
+<button class="addCart" onclick="addToCart(${i})">
+🛒 Add to Cart
+</button>
+
+</div>
+`;
+
+});
+
+renderSellerProducts();
 }
 
-function goBack() {
-  document.getElementById("checkout").style.display = "none";
-  document.getElementById("success").style.display = "none";
-  document.getElementById("shop").style.display = "block";
+function addToCart(index){
 
-  window.scrollTo(0, 0);
+cart.push({
+...products[index],
+id:Date.now()+Math.random(),
+selected:true
+});
+
+updateCartCount();
+
+alert(products[index].name+" added to cart!");
 }
 
-function searchProducts() {
-
-  let search = document.getElementById("search").value.toLowerCase();
-  let products = document.querySelectorAll(".product");
-
-  products.forEach(function(product) {
-
-    let name = product.getAttribute("data-name").toLowerCase();
-
-    if (name.includes(search)) {
-      product.style.display = "block";
-    } else {
-      product.style.display = "none";
-    }
-
-  });
+function updateCartCount(){
+document.getElementById("cartCount").innerText=cart.length;
 }
+
+function showCart(){
+
+hideAll();
+
+document.getElementById("cart").style.display="block";
+
+renderCart();
+
+window.scrollTo(0,0);
+}
+
+function renderCart(){
+
+let box=document.getElementById("cartItems");
+box.innerHTML="";
+
+if(cart.length===0){
+box.innerHTML="<p style='padding:20px;text-align:center'>Your cart is empty 🛒</p>";
+document.getElementById("cartTotal").innerText="0";
+return;
+}
+
+let total=0;
+
+cart.forEach((item,index)=>{
+
+if(item.selected) total+=item.price;
+
+box.innerHTML+=`
+<div class="cartItem">
+
+<input type="checkbox"
+${item.selected?"checked":""}
+onchange="toggleItem(${index},this.checked)">
+
+<div style="font-size:40px">${item.emoji}</div>
+
+<div class="itemInfo">
+<b>${item.name}</b>
+<br>
+₹${money(item.price)}
+</div>
+
+<button class="delete" onclick="deleteItem(${index})">
+Delete
+</button>
+
+</div>
+`;
+
+});
+
+document.getElementById("cartTotal").innerText=money(total);
+}
+
+function toggleItem(index,value){
+cart[index].selected=value;
+renderCart();
+}
+
+function selectAllItems(value){
+
+cart.forEach(item=>{
+item.selected=value;
+});
+
+renderCart();
+}
+
+function deleteItem(index){
+
+cart.splice(index,1);
+
+updateCartCount();
+renderCart();
+}
+
+function deleteSelected(){
+
+cart=cart.filter(item=>!item.selected);
+
+updateCartCount();
+renderCart();
+}
+
+function cartCheckout(){
+
+let selected=cart.filter(item=>item.selected);
+
+if(selected.length===0){
+alert("Please select at least one product.");
+return;
+}
+
+hideAll();
+
+document.getElementById("checkout").style.display="block";
+
+let total=0;
+let text="";
+
+selected.forEach(item=>{
+total+=item.price;
+text+=item.name+" — ₹"+money(item.price)+"<br>";
+});
+
+document.getElementById("checkoutItems").innerHTML=
+text+"<hr><br>Total: ₹"+money(total);
+
+window.scrollTo(0,0);
+}
+
+function buyNow(index){
+
+cart=[];
+
+cart.push({
+...products[index],
+id:Date.now(),
+selected:true
+});
+
+updateCartCount();
+
+cartCheckout();
+}
+
+function placeOrder(){
+
+let name=document.getElementById("name").value.trim();
+let mobile=document.getElementById("mobile").value.trim();
+let address=document.getElementById("address").value.trim();
+
+if(name==="" || mobile==="" || address===""){
+alert("Please fill all delivery details.");
+return;
+}
+
+let payment=document.querySelector(
+'input[name="payment"]:checked'
+).value;
+
+alert(
+"Order details saved!\\n\\n"+
+"Name: "+name+
+"\\nMobile: "+mobile+
+"\\nPayment: "+payment
+);
+
+cart=[];
+
+updateCartCount();
+
+hideAll();
+
+document.getElementById("success").style.display="block";
+
+window.scrollTo(0,0);
+}
+
+function sellerLogin(){
+
+let pin=prompt("Enter Seller PIN:");
+
+if(pin==="1234"){
+
+hideAll();
+
+document.getElementById("seller").style.display="block";
+
+renderSellerProducts();
+
+window.scrollTo(0,0);
+
+}else{
+
+alert("Wrong Seller PIN ❌");
+
+}
+
+}
+
+function addProduct(){
+
+let name=document.getElementById("productName").value.trim();
+let price=document.getElementById("productPrice").value;
+let emoji=document.getElementById("productEmoji").value.trim();
+
+if(name==="" || price==="" || emoji===""){
+alert("Please fill all product details.");
+return;
+}
+
+products.push({
+name:name,
+price:Number(price),
+emoji:emoji
+});
+
+document.getElementById("productName").value="";
+document.getElementById("productPrice").value="";
+document.getElementById("productEmoji").value="";
+
+renderProducts();
+
+alert("Product added successfully! ✅");
+
+}
+
+function renderSellerProducts(){
+
+let box=document.getElementById("sellerProducts");
+
+if(!box)return;
+
+box.innerHTML="";
+
+products.forEach((p,index)=>{
+
+box.innerHTML+=`
+<div style="padding:10px;border-bottom:1px solid #ddd">
+
+${p.emoji} <b>${p.name}</b>
+— ₹${money(p.price)}
+
+<button class="delete"
+onclick="removeProduct(${index})">
+Delete
+</button>
+
+</div>
+`;
+
+});
+
+}
+
+function removeProduct(index){
+
+if(confirm("Delete this product?")){
+
+products.splice(index,1);
+
+renderProducts();
+
+}
+
+}
+
+function searchProducts(){
+
+let search=document.getElementById("search").value.toLowerCase();
+
+document.querySelectorAll(".product").forEach(product=>{
+
+let name=product.getAttribute("data-name");
+
+product.style.display=name.includes(search)?"block":"none";
+
+});
+
+}
+
+function hideAll(){
+
+document.getElementById("shop").style.display="none";
+document.getElementById("cart").style.display="none";
+document.getElementById("checkout").style.display="none";
+document.getElementById("seller").style.display="none";
+document.getElementById("success").style.display="none";
+
+}
+
+function goShop(){
+
+hideAll();
+
+document.getElementById("shop").style.display="block";
+
+window.scrollTo(0,0);
+
+}
+
+renderProducts();
 
 </script>
 
 </body>
-  </html>
+</html>
