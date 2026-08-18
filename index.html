@@ -249,6 +249,33 @@ function searchProducts(){
 }
 
 </script>
+<!-- Seller Login -->
+<div id="sellerLogin" style="display:none; padding:20px; text-align:center;">
+  <h2>Seller Login</h2>
+  <input type="password" id="sellerPin" placeholder="Enter Seller PIN"
+         style="padding:12px; width:90%; max-width:300px;">
+  <button onclick="checkSellerPin()"
+          style="padding:12px 20px; margin-top:10px;">
+    Login
+  </button>
+  <p id="pinMessage"></p>
+</div>
 
+<script>
+const SELLER_PIN = "NK99@#";
+
+function checkSellerPin() {
+  const pin = document.getElementById("sellerPin").value;
+  const message = document.getElementById("pinMessage");
+
+  if (pin === SELLER_PIN) {
+    message.textContent = "Seller Login Successful!";
+    message.style.color = "green";
+  } else {
+    message.textContent = "Wrong Seller PIN!";
+    message.style.color = "red";
+  }
+}
+</script>
 </body>
 </html>
