@@ -331,5 +331,66 @@ function closeCart() {
   document.getElementById("cartBox").style.display = "none";
 }
 </script>
+  <!-- K-Mart Seller Panel -->
+<div id="sellerPanel" style="margin:30px auto;max-width:500px;padding:20px;background:#fff;border-radius:15px;box-shadow:0 2px 12px #ccc;">
+
+  <h2>🛍️ K-Mart Seller Panel</h2>
+
+  <input type="password" id="sellerPinInput"
+         placeholder="Seller PIN"
+         style="width:100%;padding:12px;margin:10px 0;">
+
+  <button onclick="openSellerPanel()"
+          style="padding:12px 20px;">
+    🔐 Seller Login
+  </button>
+
+  <div id="sellerForm" style="display:none;margin-top:20px;">
+
+    <input type="text" id="productName"
+           placeholder="Product Name"
+           style="width:100%;padding:12px;margin:7px 0;">
+
+    <input type="number" id="productPrice"
+           placeholder="Price ₹"
+           style="width:100%;padding:12px;margin:7px 0;">
+
+    <input type="file" id="productPhoto"
+           accept="image/*"
+           style="width:100%;padding:12px;margin:7px 0;">
+
+    <button onclick="addSellerProduct()"
+            style="padding:12px 20px;margin-top:10px;">
+      ➕ Add Product
+    </button>
+
+  </div>
+</div>
+
+<script>
+function openSellerPanel() {
+  const pin = document.getElementById("sellerPinInput").value;
+
+  if (pin === "NK99@#") {
+    document.getElementById("sellerForm").style.display = "block";
+    alert("Seller Login Successful!");
+  } else {
+    alert("Wrong Seller PIN!");
+  }
+}
+
+function addSellerProduct() {
+  const name = document.getElementById("productName").value;
+  const price = document.getElementById("productPrice").value;
+  const photo = document.getElementById("productPhoto").files[0];
+
+  if (!name || !price || !photo) {
+    alert("Product name, price aur photo select karo.");
+    return;
+  }
+
+  alert("Product ready hai: " + name + " - ₹" + price);
+}
+</script>
 </body>
 </html>
