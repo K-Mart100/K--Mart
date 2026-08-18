@@ -6,136 +6,146 @@
 <title>K-Mart | Online Shopping</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#f5f5f5;color:#222}
-header{background:#2874f0;color:white;padding:15px;text-align:center}
-header h1{font-size:28px}
-.search{margin-top:10px;width:90%;max-width:500px;padding:12px;border:0;border-radius:5px}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;padding:20px}
-.card{background:white;padding:15px;border-radius:10px;text-align:center;box-shadow:0 2px 8px #ccc}
-.card img{width:100%;height:160px;object-fit:contain}
-.card h3{margin:10px 0}
-.price{font-size:20px;font-weight:bold;color:#2874f0;margin:8px}
-button{border:0;padding:10px 15px;border-radius:5px;cursor:pointer;margin:4px}
-.buy{background:#ff9f00;color:white}
-.cart{background:#2874f0;color:white}
-.checkout{background:white;margin:20px;padding:20px;border-radius:10px}
-.checkout input,.checkout textarea,.checkout select{
-width:100%;padding:12px;margin:7px 0;border:1px solid #ccc;border-radius:5px
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
 }
-#message{font-weight:bold;margin-top:10px}
+
+body{
+  background:#f5f5f5;
+  color:#222;
+}
+
+header{
+  background:#2874f0;
+  color:white;
+  padding:15px;
+  text-align:center;
+}
+
+header h1{
+  font-size:28px;
+}
+
+.search{
+  width:90%;
+  max-width:500px;
+  margin-top:12px;
+  padding:12px;
+  border:0;
+  border-radius:5px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+  padding:20px;
+}
+
+.empty{
+  grid-column:1/-1;
+  text-align:center;
+  padding:50px 20px;
+  background:white;
+  border-radius:10px;
+}
+
+.checkout{
+  background:white;
+  margin:20px;
+  padding:20px;
+  border-radius:10px;
+}
+
+.checkout input,
+.checkout textarea,
+.checkout select{
+  width:100%;
+  padding:12px;
+  margin:7px 0;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+
+button{
+  background:#2874f0;
+  color:white;
+  border:0;
+  padding:12px 20px;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+#message{
+  margin-top:12px;
+  font-weight:bold;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>🛒 K-Mart</h1>
-<input class="search" id="search" placeholder="Search products..." onkeyup="searchProducts()">
+  <h1>🛒 K-Mart</h1>
+  <input
+    class="search"
+    id="search"
+    type="text"
+    placeholder="Search your products..."
+  >
 </header>
 
 <section class="products" id="products">
 
-<div class="card">
-<img src="https://via.placeholder.com/300?text=Mobile">
-<h3>Smartphone</h3>
-<p class="price">₹9,999</p>
-<button class="buy" onclick="buyNow('Smartphone',9999)">Buy Now</button>
-<button class="cart" onclick="addCart('Smartphone',9999)">Add to Cart</button>
-</div>
+  <!-- YOUR PRODUCTS WILL BE ADDED HERE -->
 
-<div class="card">
-<img src="https://via.placeholder.com/300?text=Headphones">
-<h3>Headphones</h3>
-<p class="price">₹799</p>
-<button class="buy" onclick="buyNow('Headphones',799)">Buy Now</button>
-<button class="cart" onclick="addCart('Headphones',799)">Add to Cart</button>
-</div>
-
-<div class="card">
-<img src="https://via.placeholder.com/300?text=Watch">
-<h3>Smart Watch</h3>
-<p class="price">₹1,499</p>
-<button class="buy" onclick="buyNow('Smart Watch',1499)">Buy Now</button>
-<button class="cart" onclick="addCart('Smart Watch',1499)">Add to Cart</button>
-</div>
-
-<div class="card">
-<img src="https://via.placeholder.com/300?text=Shoes">
-<h3>Sports Shoes</h3>
-<p class="price">₹1,299</p>
-<button class="buy" onclick="buyNow('Sports Shoes',1299)">Buy Now</button>
-<button class="cart" onclick="addCart('Sports Shoes',1299)">Add to Cart</button>
-</div>
+  <div class="empty">
+    <h2>Your Products</h2>
+    <p>Products will appear here.</p>
+  </div>
 
 </section>
 
-<div class="checkout">
-<h2>🛍️ Checkout</h2>
-<p id="cartInfo">Cart empty</p>
+<section class="checkout">
+  <h2>🛍️ Checkout</h2>
 
-<input id="name" placeholder="Full Name">
-<input id="phone" placeholder="Phone Number">
-<textarea id="address" placeholder="Delivery Address"></textarea>
+  <p id="cartInfo">No product selected.</p>
 
-<select id="payment">
-<option value="">Select Payment Method</option>
-<option>Cash on Delivery</option>
-<option>UPI</option>
-<option>Card</option>
-</select>
+  <input id="name" type="text" placeholder="Full Name">
+  <input id="phone" type="tel" placeholder="Phone Number">
+  <textarea id="address" placeholder="Delivery Address"></textarea>
 
-<button class="buy" onclick="placeOrder()">Place Order</button>
+  <select id="payment">
+    <option value="">Select Payment Method</option>
+    <option>Cash on Delivery</option>
+    <option>UPI</option>
+    <option>Card</option>
+  </select>
 
-<p id="message"></p>
-</div>
+  <button onclick="placeOrder()">Place Order</button>
+
+  <p id="message"></p>
+</section>
 
 <script>
-let cart=[];
-let selectedProduct="";
-
-function addCart(name,price){
-cart.push({name,price});
-updateCart();
-alert(name+" added to cart!");
-}
-
-function buyNow(name,price){
-selectedProduct=name+" - ₹"+price;
-document.getElementById("cartInfo").innerText="Buying: "+selectedProduct;
-window.scrollTo(0,document.body.scrollHeight);
-}
-
-function updateCart(){
-let total=0;
-cart.forEach(item=>total+=item.price);
-document.getElementById("cartInfo").innerText=
-"Cart: "+cart.length+" item(s) | Total: ₹"+total;
-}
-
 function placeOrder(){
-let name=document.getElementById("name").value;
-let phone=document.getElementById("phone").value;
-let address=document.getElementById("address").value;
-let payment=document.getElementById("payment").value;
 
-if(!name || !phone || !address || !payment){
-document.getElementById("message").innerText="⚠️ Please fill all details.";
-return;
-}
+  const name = document.getElementById("name").value;
+  const phone = document.getElementById("phone").value;
+  const address = document.getElementById("address").value;
+  const payment = document.getElementById("payment").value;
 
-document.getElementById("message").innerText=
-"✅ Order details received! Payment method: "+payment;
-}
+  if(!name || !phone || !address || !payment){
+    document.getElementById("message").innerText =
+      "⚠️ Please fill all details.";
+    return;
+  }
 
-function searchProducts(){
-let value=document.getElementById("search").value.toLowerCase();
-let cards=document.querySelectorAll(".card");
-
-cards.forEach(card=>{
-let text=card.innerText.toLowerCase();
-card.style.display=text.includes(value)?"block":"none";
-});
+  document.getElementById("message").innerText =
+    "✅ Order information filled successfully.";
 }
 </script>
 
