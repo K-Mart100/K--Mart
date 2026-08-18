@@ -277,5 +277,59 @@ function checkSellerPin() {
   }
 }
 </script>
+  <!-- K-Mart Buy Now + Cart -->
+<div id="kmartCart" style="position:fixed;right:15px;bottom:15px;z-index:9999;">
+  <button onclick="openCart()" style="padding:12px 18px;border:0;border-radius:8px;background:#2874f0;color:white;font-weight:bold;">
+    🛒 Cart (<span id="cartCount">0</span>)
+  </button>
+</div>
+
+<div id="cartBox" style="display:none;position:fixed;right:15px;bottom:70px;width:300px;max-width:90%;background:white;padding:20px;border-radius:12px;box-shadow:0 4px 20px #777;z-index:9999;">
+  <h2>My Cart</h2>
+  <div id="cartItems"></div>
+  <button onclick="closeCart()" style="padding:10px;margin-top:10px;">Close</button>
+</div>
+
+<script>
+let kmartCart = [];
+
+function buyNow(productName, price) {
+  kmartCart.push({name: productName, price: price});
+  updateCart();
+  openCart();
+}
+
+function updateCart() {
+  document.getElementById("cartCount").textContent = kmartCart.length;
+
+  let items = "";
+  kmartCart.forEach((item, index) => {
+    items += `
+      <div style="padding:10px 0;border-bottom:1px solid #ddd;">
+        <b>${item.name}</b><br>
+        ₹${item.price}
+        <button onclick="removeItem(${index})" style="margin-left:10px;">
+          Remove
+        </button>
+      </div>`;
+  });
+
+  document.getElementById("cartItems").innerHTML =
+    items || "<p>Your cart is empty.</p>";
+}
+
+function removeItem(index) {
+  kmartCart.splice(index, 1);
+  updateCart();
+}
+
+function openCart() {
+  document.getElementById("cartBox").style.display = "block";
+}
+
+function closeCart() {
+  document.getElementById("cartBox").style.display = "none";
+}
+</script>
 </body>
 </html>
