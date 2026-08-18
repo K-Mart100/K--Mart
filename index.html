@@ -77,15 +77,70 @@ header h1{
   margin:8px;
 }
 
-.buy{
-  width:100%;
-  padding:11px;
+.buttons{
+  display:flex;
+  gap:8px;
+}
+
+.buy,.cart-add{
+  flex:1;
+  padding:11px 5px;
   border:0;
   border-radius:6px;
-  background:#ff9f00;
   color:white;
   font-weight:bold;
   cursor:pointer;
+}
+
+.buy{
+  background:#ff9f00;
+}
+
+.cart-add{
+  background:#2874f0;
+}
+
+.checkout,.seller{
+  background:white;
+  margin-top:25px;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 2px 8px #ddd;
+}
+
+.checkout input,
+.checkout textarea,
+.checkout select,
+.seller input{
+  width:100%;
+  padding:12px;
+  margin:7px 0;
+  border:1px solid #ccc;
+  border-radius:6px;
+}
+
+.checkout textarea{
+  min-height:100px;
+}
+
+.place,.seller button{
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:6px;
+  background:#2874f0;
+  color:white;
+  font-weight:bold;
+}
+
+#message{
+  margin-top:12px;
+  font-weight:bold;
+}
+
+#sellerForm{
+  display:none;
+  margin-top:15px;
 }
 
 .cart-button{
@@ -117,49 +172,9 @@ header h1{
   z-index:9999;
 }
 
-.checkout,
-.seller{
-  background:white;
-  margin-top:25px;
-  padding:20px;
-  border-radius:10px;
-  box-shadow:0 2px 8px #ddd;
-}
-
-.checkout input,
-.checkout textarea,
-.checkout select,
-.seller input{
-  width:100%;
-  padding:12px;
-  margin:7px 0;
-  border:1px solid #ccc;
-  border-radius:6px;
-}
-
-.checkout textarea{
-  min-height:100px;
-}
-
-.place,
-.seller button{
-  width:100%;
-  padding:12px;
-  border:0;
-  border-radius:6px;
-  background:#2874f0;
-  color:white;
-  font-weight:bold;
-}
-
-#message{
-  margin-top:12px;
-  font-weight:bold;
-}
-
-#sellerForm{
-  display:none;
-  margin-top:15px;
+.qty button{
+  padding:4px 9px;
+  margin:4px;
 }
 
 footer{
@@ -173,353 +188,447 @@ footer{
 <body>
 
 <header>
-  <h1>🛒 K-Mart</h1>
+<h1>🛒 K-Mart</h1>
 
-  <input
-    class="search"
-    id="search"
-    type="text"
-    placeholder="Search products..."
-    oninput="searchProducts()"
-  >
+<input
+class="search"
+id="search"
+type="text"
+placeholder="Search products..."
+oninput="searchProducts()">
 </header>
 
 <div class="container">
 
-  <h2 style="margin-bottom:15px;">🛍️ Products</h2>
+<h2 style="margin-bottom:15px;">🛍️ Products</h2>
 
-  <section class="products" id="products">
+<section class="products" id="products">
 
-    <div class="card">
-      <img src="https://via.placeholder.com/300x200?text=Mobile" alt="Mobile">
-      <h3>Smartphone</h3>
-      <p class="price">₹9,999</p>
-      <button class="buy" onclick="buyNow('Smartphone',9999)">
-        ⚡ Buy Now
-      </button>
-    </div>
+<div class="card">
+<img src="https://via.placeholder.com/300x200?text=Mobile" alt="Mobile">
+<h3>Smartphone</h3>
+<p class="price">₹9,999</p>
 
-    <div class="card">
-      <img src="https://via.placeholder.com/300x200?text=Headphones" alt="Headphones">
-      <h3>Wireless Headphones</h3>
-      <p class="price">₹1,499</p>
-      <button class="buy" onclick="buyNow('Wireless Headphones',1499)">
-        ⚡ Buy Now
-      </button>
-    </div>
+<div class="buttons">
+<button class="cart-add" onclick="addToCart('Smartphone',9999)">
+🛒 Cart
+</button>
 
-    <div class="card">
-      <img src="https://via.placeholder.com/300x200?text=Watch" alt="Watch">
-      <h3>Smart Watch</h3>
-      <p class="price">₹2,499</p>
-      <button class="buy" onclick="buyNow('Smart Watch',2499)">
-        ⚡ Buy Now
-      </button>
-    </div>
+<button class="buy" onclick="buyNow('Smartphone',9999)">
+⚡ Buy
+</button>
+</div>
+</div>
 
-    <div class="card">
-      <img src="https://via.placeholder.com/300x200?text=Shoes" alt="Shoes">
-      <h3>Sports Shoes</h3>
-      <p class="price">₹1,999</p>
-      <button class="buy" onclick="buyNow('Sports Shoes',1999)">
-        ⚡ Buy Now
-      </button>
-    </div>
+<div class="card">
+<img src="https://via.placeholder.com/300x200?text=Headphones" alt="Headphones">
+<h3>Wireless Headphones</h3>
+<p class="price">₹1,499</p>
 
-  </section>
+<div class="buttons">
+<button class="cart-add" onclick="addToCart('Wireless Headphones',1499)">
+🛒 Cart
+</button>
 
-  <section class="checkout">
+<button class="buy" onclick="buyNow('Wireless Headphones',1499)">
+⚡ Buy
+</button>
+</div>
+</div>
 
-    <h2>🛍️ Checkout</h2>
+<div class="card">
+<img src="https://via.placeholder.com/300x200?text=Watch" alt="Watch">
+<h3>Smart Watch</h3>
+<p class="price">₹2,499</p>
 
-    <p id="cartInfo" style="margin:10px 0;">
-      No product selected.
-    </p>
+<div class="buttons">
+<button class="cart-add" onclick="addToCart('Smart Watch',2499)">
+🛒 Cart
+</button>
 
-    <input id="name" type="text" placeholder="Full Name">
+<button class="buy" onclick="buyNow('Smart Watch',2499)">
+⚡ Buy
+</button>
+</div>
+</div>
 
-    <input id="phone" type="tel" placeholder="Phone Number">
+<div class="card">
+<img src="https://via.placeholder.com/300x200?text=Shoes" alt="Shoes">
+<h3>Sports Shoes</h3>
+<p class="price">₹1,999</p>
 
-    <textarea id="address" placeholder="Delivery Address"></textarea>
+<div class="buttons">
+<button class="cart-add" onclick="addToCart('Sports Shoes',1999)">
+🛒 Cart
+</button>
 
-    <select id="payment">
-      <option value="">Select Payment Method</option>
-      <option>Cash on Delivery</option>
-      <option>UPI</option>
-      <option>Card</option>
-    </select>
+<button class="buy" onclick="buyNow('Sports Shoes',1999)">
+⚡ Buy
+</button>
+</div>
+</div>
 
-    <button class="place" onclick="placeOrder()">
-      Place Order
-    </button>
+</section>
 
-    <p id="message"></p>
+<section class="checkout">
 
-  </section>
+<h2>🛍️ Checkout</h2>
 
-  <section class="seller">
+<p id="cartInfo" style="margin:10px 0;">
+No product selected.
+</p>
 
-    <h2>🏪 K-Mart Seller Panel</h2>
+<input id="name" type="text" placeholder="Full Name">
 
-    <input
-      type="password"
-      id="sellerPin"
-      placeholder="Enter Seller PIN"
-    >
+<input id="phone" type="tel" placeholder="Phone Number">
 
-    <button onclick="sellerLogin()">
-      🔐 Seller Login
-    </button>
+<textarea id="address" placeholder="Delivery Address"></textarea>
 
-    <div id="sellerForm">
+<select id="payment">
+<option value="">Select Payment Method</option>
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Card</option>
+</select>
 
-      <input
-        type="text"
-        id="productName"
-        placeholder="Product Name"
-      >
+<button class="place" onclick="placeOrder()">
+Place Order
+</button>
 
-      <input
-        type="number"
-        id="productPrice"
-        placeholder="Price ₹"
-      >
+<p id="message"></p>
 
-      <input
-        type="url"
-        id="productImage"
-        placeholder="Product Image URL"
-      >
+</section>
 
-      <button onclick="addProduct()">
-        ➕ Add Product
-      </button>
+<section class="seller">
 
-    </div>
+<h2>🏪 K-Mart Seller Panel</h2>
 
-  </section>
+<input
+type="password"
+id="sellerPin"
+placeholder="Enter Seller PIN">
+
+<button onclick="sellerLogin()">
+🔐 Seller Login
+</button>
+
+<div id="sellerForm">
+
+<input
+type="text"
+id="productName"
+placeholder="Product Name">
+
+<input
+type="number"
+id="productPrice"
+placeholder="Price ₹">
+
+<input
+type="url"
+id="productImage"
+placeholder="Product Image URL">
+
+<button onclick="addProduct()">
+➕ Add Product
+</button>
+
+</div>
+
+</section>
 
 </div>
 
 <button class="cart-button" onclick="openCart()">
-  🛒 Cart (<span id="cartCount">0</span>)
+🛒 Cart (<span id="cartCount">0</span>)
 </button>
 
 <div class="cart-box" id="cartBox">
 
-  <h2>🛒 My Cart</h2>
+<h2>🛒 My Cart</h2>
 
-  <div id="cartItems" style="margin-top:10px;"></div>
+<div id="cartItems" style="margin-top:10px;"></div>
 
-  <button
-    onclick="closeCart()"
-    style="padding:10px;margin-top:15px;"
-  >
-    Close
-  </button>
+<button onclick="closeCart()" style="padding:10px;margin-top:15px;">
+Close
+</button>
 
 </div>
 
 <footer>
-  © 2026 K-Mart | Online Shopping
+© 2026 K-Mart | Online Shopping
 </footer>
 
 <script>
 
-let selectedProduct = "";
-let kmartCart = [];
+let kmartCart=[];
+let selectedProduct="";
 
-function buyNow(name, price){
+function addToCart(name,price){
 
-  selectedProduct = name + " - ₹" + price;
+let existing=kmartCart.find(item=>item.name===name);
 
-  document.getElementById("cartInfo").innerText =
-    "Selected: " + selectedProduct;
+if(existing){
+existing.qty++;
+}else{
+kmartCart.push({
+name:name,
+price:price,
+qty:1
+});
+}
 
-  kmartCart.push({
-    name:name,
-    price:price
-  });
+selectedProduct=name+" - ₹"+price;
 
-  updateCart();
+document.getElementById("cartInfo").innerText=
+"Selected: "+selectedProduct;
 
-  window.scrollTo({
-    top:document.body.scrollHeight,
-    behavior:"smooth"
-  });
+updateCart();
+
+alert("✅ Product added to cart!");
+
+}
+
+function buyNow(name,price){
+
+selectedProduct=name+" - ₹"+price;
+
+document.getElementById("cartInfo").innerText=
+"Selected: "+selectedProduct;
+
+window.scrollTo({
+top:document.body.scrollHeight,
+behavior:"smooth"
+});
+
 }
 
 function updateCart(){
 
-  document.getElementById("cartCount").innerText =
-    kmartCart.length;
+let totalItems=0;
 
-  let html = "";
+kmartCart.forEach(item=>{
+totalItems+=item.qty;
+});
 
-  kmartCart.forEach(function(item,index){
+document.getElementById("cartCount").innerText=totalItems;
 
-    html += `
-      <div style="padding:10px 0;border-bottom:1px solid #ddd;">
-        <b>${item.name}</b>
-        <br>
-        ₹${item.price}
-        <br>
-        <button onclick="removeItem(${index})"
-          style="margin-top:6px;padding:6px;">
-          Remove
-        </button>
-      </div>
-    `;
+let html="";
 
-  });
+kmartCart.forEach(function(item,index){
 
-  document.getElementById("cartItems").innerHTML =
-    html || "<p>Your cart is empty.</p>";
+html+=`
+<div style="padding:10px 0;border-bottom:1px solid #ddd;">
+
+<b>${item.name}</b>
+
+<br>
+
+₹${item.price} × ${item.qty}
+
+<div class="qty">
+
+<button onclick="changeQty(${index},-1)">−</button>
+
+${item.qty}
+
+<button onclick="changeQty(${index},1)">+</button>
+
+<button onclick="removeItem(${index})">
+Remove
+</button>
+
+</div>
+
+</div>
+`;
+
+});
+
+document.getElementById("cartItems").innerHTML=
+html||"<p>Your cart is empty.</p>";
+
+}
+
+function changeQty(index,value){
+
+kmartCart[index].qty+=value;
+
+if(kmartCart[index].qty<=0){
+kmartCart.splice(index,1);
+}
+
+updateCart();
+
 }
 
 function removeItem(index){
 
-  kmartCart.splice(index,1);
+kmartCart.splice(index,1);
 
-  updateCart();
+updateCart();
+
 }
 
 function openCart(){
 
-  document.getElementById("cartBox").style.display =
-    "block";
+document.getElementById("cartBox").style.display="block";
+
+updateCart();
+
 }
 
 function closeCart(){
 
-  document.getElementById("cartBox").style.display =
-    "none";
+document.getElementById("cartBox").style.display="none";
+
 }
 
 function placeOrder(){
 
-  const name =
-    document.getElementById("name").value.trim();
+const name=
+document.getElementById("name").value.trim();
 
-  const phone =
-    document.getElementById("phone").value.trim();
+const phone=
+document.getElementById("phone").value.trim();
 
-  const address =
-    document.getElementById("address").value.trim();
+const address=
+document.getElementById("address").value.trim();
 
-  const payment =
-    document.getElementById("payment").value;
+const payment=
+document.getElementById("payment").value;
 
-  const message =
-    document.getElementById("message");
+const message=
+document.getElementById("message");
 
-  if(!selectedProduct){
+if(!selectedProduct){
 
-    message.innerText =
-      "⚠️ Please select a product first.";
+message.innerText=
+"⚠️ Please select a product first.";
 
-    message.style.color = "red";
+message.style.color="red";
 
-    return;
-  }
+return;
 
-  if(!name || !phone || !address || !payment){
+}
 
-    message.innerText =
-      "⚠️ Please fill all details.";
+if(!name||!phone||!address||!payment){
 
-    message.style.color = "red";
+message.innerText=
+"⚠️ Please fill all details.";
 
-    return;
-  }
+message.style.color="red";
 
-  message.innerText =
-    "✅ Order information received successfully!";
+return;
 
-  message.style.color = "green";
+}
+
+message.innerText=
+"✅ Order information received successfully!";
+
+message.style.color="green";
+
 }
 
 function searchProducts(){
 
-  const value =
-    document.getElementById("search").value.toLowerCase();
+const value=
+document.getElementById("search").value.toLowerCase();
 
-  document.querySelectorAll(".card").forEach(function(card){
+document.querySelectorAll(".card").forEach(function(card){
 
-    const text =
-      card.innerText.toLowerCase();
+const text=
+card.innerText.toLowerCase();
 
-    card.style.display =
-      text.includes(value) ? "block" : "none";
+card.style.display=
+text.includes(value)?"block":"none";
 
-  });
+});
+
 }
 
 function sellerLogin(){
 
-  const pin =
-    document.getElementById("sellerPin").value;
+const pin=
+document.getElementById("sellerPin").value;
 
-  if(pin === "NK99@#"){
+if(pin==="NK99@#"){
 
-    document.getElementById("sellerForm").style.display =
-      "block";
+document.getElementById("sellerForm").style.display="block";
 
-    alert("Seller Login Successful!");
+alert("✅ Seller Login Successful!");
 
-  }else{
+}else{
 
-    alert("Wrong Seller PIN!");
+alert("❌ Wrong Seller PIN!");
 
-  }
+}
+
 }
 
 function addProduct(){
 
-  const name =
-    document.getElementById("productName").value.trim();
+const name=
+document.getElementById("productName").value.trim();
 
-  const price =
-    document.getElementById("productPrice").value;
+const price=
+document.getElementById("productPrice").value;
 
-  const image =
-    document.getElementById("productImage").value.trim();
+const image=
+document.getElementById("productImage").value.trim();
 
-  if(!name || !price || !image){
+if(!name||!price||!image){
 
-    alert("Product name, price aur image URL fill karo.");
+alert("⚠️ Product name, price aur image URL fill karo.");
 
-    return;
-  }
+return;
 
-  const products =
-    document.getElementById("products");
+}
 
-  const card =
-    document.createElement("div");
+const card=
+document.createElement("div");
 
-  card.className = "card";
+card.className="card";
 
-  card.innerHTML = `
-    <img src="${image}" alt="${name}">
-    <h3>${name}</h3>
-    <p class="price">₹${price}</p>
-    <button class="buy"
-      onclick="buyNow('${name.replace(/'/g,"\\'")}',${price})">
-      ⚡ Buy Now
-    </button>
-  `;
+card.innerHTML=`
 
-  products.appendChild(card);
+<img src="${image}" alt="${name}">
 
-  document.getElementById("productName").value = "";
-  document.getElementById("productPrice").value = "";
-  document.getElementById("productImage").value = "";
+<h3>${name}</h3>
 
-  alert("✅ Product added!");
+<p class="price">₹${price}</p>
+
+<div class="buttons">
+
+<button class="cart-add"
+onclick="addToCart('${name.replace(/'/g,"\\'")}',${price})">
+
+🛒 Cart
+
+</button>
+
+<button class="buy"
+onclick="buyNow('${name.replace(/'/g,"\\'")}',${price})">
+
+⚡ Buy
+
+</button>
+
+</div>
+
+`;
+
+document.getElementById("products").appendChild(card);
+
+document.getElementById("productName").value="";
+document.getElementById("productPrice").value="";
+document.getElementById("productImage").value="";
+
+alert("✅ Product added!");
+
 }
 
 </script>
 
 </body>
-</html>
+  </html>
