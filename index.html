@@ -45,42 +45,91 @@ header h1{
   padding:20px;
 }
 
-.install{
-  display:none;
-  width:100%;
-  padding:13px;
-  margin-bottom:15px;
-  background:#ff9f00;
-  color:white;
-  border:0;
-  border-radius:7px;
-  font-weight:bold;
-}
-
 .products{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
   gap:15px;
 }
 
-.empty{
-  grid-column:1/-1;
+.card{
   background:white;
-  padding:50px 20px;
-  text-align:center;
   border-radius:10px;
+  padding:12px;
+  box-shadow:0 2px 8px #ddd;
+  text-align:center;
 }
 
-.checkout{
+.card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:8px;
+}
+
+.card h3{
+  margin:10px 0 5px;
+}
+
+.price{
+  color:#2874f0;
+  font-size:20px;
+  font-weight:bold;
+  margin:8px;
+}
+
+.buy{
+  width:100%;
+  padding:11px;
+  border:0;
+  border-radius:6px;
+  background:#ff9f00;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.cart-button{
+  position:fixed;
+  right:15px;
+  bottom:15px;
+  z-index:9999;
+  padding:13px 18px;
+  border:0;
+  border-radius:8px;
+  background:#2874f0;
+  color:white;
+  font-weight:bold;
+}
+
+.cart-box{
+  display:none;
+  position:fixed;
+  right:15px;
+  bottom:70px;
+  width:320px;
+  max-width:90%;
+  max-height:70vh;
+  overflow:auto;
   background:white;
-  margin-top:20px;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 4px 20px #777;
+  z-index:9999;
+}
+
+.checkout,
+.seller{
+  background:white;
+  margin-top:25px;
   padding:20px;
   border-radius:10px;
+  box-shadow:0 2px 8px #ddd;
 }
 
 .checkout input,
 .checkout textarea,
-.checkout select{
+.checkout select,
+.seller input{
   width:100%;
   padding:12px;
   margin:7px 0;
@@ -90,22 +139,27 @@ header h1{
 
 .checkout textarea{
   min-height:100px;
-  resize:vertical;
 }
 
-.place{
+.place,
+.seller button{
   width:100%;
   padding:12px;
-  background:#2874f0;
-  color:white;
   border:0;
   border-radius:6px;
+  background:#2874f0;
+  color:white;
   font-weight:bold;
 }
 
 #message{
   margin-top:12px;
   font-weight:bold;
+}
+
+#sellerForm{
+  display:none;
+  margin-top:15px;
 }
 
 footer{
@@ -132,15 +186,44 @@ footer{
 
 <div class="container">
 
-  <button id="installBtn" class="install">
-    📱 Install K-Mart App
-  </button>
+  <h2 style="margin-bottom:15px;">🛍️ Products</h2>
 
   <section class="products" id="products">
 
-    <div class="empty">
-      <h2>Welcome to K-Mart</h2>
-      <p>Your products will appear here.</p>
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200?text=Mobile" alt="Mobile">
+      <h3>Smartphone</h3>
+      <p class="price">₹9,999</p>
+      <button class="buy" onclick="buyNow('Smartphone',9999)">
+        ⚡ Buy Now
+      </button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200?text=Headphones" alt="Headphones">
+      <h3>Wireless Headphones</h3>
+      <p class="price">₹1,499</p>
+      <button class="buy" onclick="buyNow('Wireless Headphones',1499)">
+        ⚡ Buy Now
+      </button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200?text=Watch" alt="Watch">
+      <h3>Smart Watch</h3>
+      <p class="price">₹2,499</p>
+      <button class="buy" onclick="buyNow('Smart Watch',2499)">
+        ⚡ Buy Now
+      </button>
+    </div>
+
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200?text=Shoes" alt="Shoes">
+      <h3>Sports Shoes</h3>
+      <p class="price">₹1,999</p>
+      <button class="buy" onclick="buyNow('Sports Shoes',1999)">
+        ⚡ Buy Now
+      </button>
     </div>
 
   </section>
@@ -149,16 +232,15 @@ footer{
 
     <h2>🛍️ Checkout</h2>
 
-    <p id="cartInfo">No product selected.</p>
+    <p id="cartInfo" style="margin:10px 0;">
+      No product selected.
+    </p>
 
     <input id="name" type="text" placeholder="Full Name">
 
     <input id="phone" type="tel" placeholder="Phone Number">
 
-    <textarea
-      id="address"
-      placeholder="Delivery Address"
-    ></textarea>
+    <textarea id="address" placeholder="Delivery Address"></textarea>
 
     <select id="payment">
       <option value="">Select Payment Method</option>
@@ -175,22 +257,91 @@ footer{
 
   </section>
 
+  <section class="seller">
+
+    <h2>🏪 K-Mart Seller Panel</h2>
+
+    <input
+      type="password"
+      id="sellerPin"
+      placeholder="Enter Seller PIN"
+    >
+
+    <button onclick="sellerLogin()">
+      🔐 Seller Login
+    </button>
+
+    <div id="sellerForm">
+
+      <input
+        type="text"
+        id="productName"
+        placeholder="Product Name"
+      >
+
+      <input
+        type="number"
+        id="productPrice"
+        placeholder="Price ₹"
+      >
+
+      <input
+        type="url"
+        id="productImage"
+        placeholder="Product Image URL"
+      >
+
+      <button onclick="addProduct()">
+        ➕ Add Product
+      </button>
+
+    </div>
+
+  </section>
+
+</div>
+
+<button class="cart-button" onclick="openCart()">
+  🛒 Cart (<span id="cartCount">0</span>)
+</button>
+
+<div class="cart-box" id="cartBox">
+
+  <h2>🛒 My Cart</h2>
+
+  <div id="cartItems" style="margin-top:10px;"></div>
+
+  <button
+    onclick="closeCart()"
+    style="padding:10px;margin-top:15px;"
+  >
+    Close
+  </button>
+
 </div>
 
 <footer>
-  © 2026 K-Mart
+  © 2026 K-Mart | Online Shopping
 </footer>
 
 <script>
 
 let selectedProduct = "";
+let kmartCart = [];
 
-function buyNow(name,price){
+function buyNow(name, price){
 
   selectedProduct = name + " - ₹" + price;
 
   document.getElementById("cartInfo").innerText =
     "Selected: " + selectedProduct;
+
+  kmartCart.push({
+    name:name,
+    price:price
+  });
+
+  updateCart();
 
   window.scrollTo({
     top:document.body.scrollHeight,
@@ -198,38 +349,94 @@ function buyNow(name,price){
   });
 }
 
+function updateCart(){
+
+  document.getElementById("cartCount").innerText =
+    kmartCart.length;
+
+  let html = "";
+
+  kmartCart.forEach(function(item,index){
+
+    html += `
+      <div style="padding:10px 0;border-bottom:1px solid #ddd;">
+        <b>${item.name}</b>
+        <br>
+        ₹${item.price}
+        <br>
+        <button onclick="removeItem(${index})"
+          style="margin-top:6px;padding:6px;">
+          Remove
+        </button>
+      </div>
+    `;
+
+  });
+
+  document.getElementById("cartItems").innerHTML =
+    html || "<p>Your cart is empty.</p>";
+}
+
+function removeItem(index){
+
+  kmartCart.splice(index,1);
+
+  updateCart();
+}
+
+function openCart(){
+
+  document.getElementById("cartBox").style.display =
+    "block";
+}
+
+function closeCart(){
+
+  document.getElementById("cartBox").style.display =
+    "none";
+}
+
 function placeOrder(){
 
   const name =
-    document.getElementById("name").value;
+    document.getElementById("name").value.trim();
 
   const phone =
-    document.getElementById("phone").value;
+    document.getElementById("phone").value.trim();
 
   const address =
-    document.getElementById("address").value;
+    document.getElementById("address").value.trim();
 
   const payment =
     document.getElementById("payment").value;
 
+  const message =
+    document.getElementById("message");
+
   if(!selectedProduct){
 
-    document.getElementById("message").innerText =
+    message.innerText =
       "⚠️ Please select a product first.";
+
+    message.style.color = "red";
 
     return;
   }
 
   if(!name || !phone || !address || !payment){
 
-    document.getElementById("message").innerText =
+    message.innerText =
       "⚠️ Please fill all details.";
+
+    message.style.color = "red";
 
     return;
   }
 
-  document.getElementById("message").innerText =
-    "✅ Order information received.";
+  message.innerText =
+    "✅ Order information received successfully!";
+
+  message.style.color = "green";
 }
 
 function searchProducts(){
@@ -237,7 +444,7 @@ function searchProducts(){
   const value =
     document.getElementById("search").value.toLowerCase();
 
-  document.querySelectorAll(".card").forEach(card => {
+  document.querySelectorAll(".card").forEach(function(card){
 
     const text =
       card.innerText.toLowerCase();
@@ -248,149 +455,71 @@ function searchProducts(){
   });
 }
 
-</script>
-<!-- Seller Login -->
-<div id="sellerLogin" style="display:none; padding:20px; text-align:center;">
-  <h2>Seller Login</h2>
-  <input type="password" id="sellerPin" placeholder="Enter Seller PIN"
-         style="padding:12px; width:90%; max-width:300px;">
-  <button onclick="checkSellerPin()"
-          style="padding:12px 20px; margin-top:10px;">
-    Login
-  </button>
-  <p id="pinMessage"></p>
-</div>
+function sellerLogin(){
 
-<script>
-const SELLER_PIN = "NK99@#";
+  const pin =
+    document.getElementById("sellerPin").value;
 
-function checkSellerPin() {
-  const pin = document.getElementById("sellerPin").value;
-  const message = document.getElementById("pinMessage");
+  if(pin === "NK99@#"){
 
-  if (pin === SELLER_PIN) {
-    message.textContent = "Seller Login Successful!";
-    message.style.color = "green";
-  } else {
-    message.textContent = "Wrong Seller PIN!";
-    message.style.color = "red";
-  }
-}
-</script>
-  <!-- K-Mart Buy Now + Cart -->
-<div id="kmartCart" style="position:fixed;right:15px;bottom:15px;z-index:9999;">
-  <button onclick="openCart()" style="padding:12px 18px;border:0;border-radius:8px;background:#2874f0;color:white;font-weight:bold;">
-    🛒 Cart (<span id="cartCount">0</span>)
-  </button>
-</div>
+    document.getElementById("sellerForm").style.display =
+      "block";
 
-<div id="cartBox" style="display:none;position:fixed;right:15px;bottom:70px;width:300px;max-width:90%;background:white;padding:20px;border-radius:12px;box-shadow:0 4px 20px #777;z-index:9999;">
-  <h2>My Cart</h2>
-  <div id="cartItems"></div>
-  <button onclick="closeCart()" style="padding:10px;margin-top:10px;">Close</button>
-</div>
-
-<script>
-let kmartCart = [];
-
-function buyNow(productName, price) {
-  kmartCart.push({name: productName, price: price});
-  updateCart();
-  openCart();
-}
-
-function updateCart() {
-  document.getElementById("cartCount").textContent = kmartCart.length;
-
-  let items = "";
-  kmartCart.forEach((item, index) => {
-    items += `
-      <div style="padding:10px 0;border-bottom:1px solid #ddd;">
-        <b>${item.name}</b><br>
-        ₹${item.price}
-        <button onclick="removeItem(${index})" style="margin-left:10px;">
-          Remove
-        </button>
-      </div>`;
-  });
-
-  document.getElementById("cartItems").innerHTML =
-    items || "<p>Your cart is empty.</p>";
-}
-
-function removeItem(index) {
-  kmartCart.splice(index, 1);
-  updateCart();
-}
-
-function openCart() {
-  document.getElementById("cartBox").style.display = "block";
-}
-
-function closeCart() {
-  document.getElementById("cartBox").style.display = "none";
-}
-</script>
-  <!-- K-Mart Seller Panel -->
-<div id="sellerPanel" style="margin:30px auto;max-width:500px;padding:20px;background:#fff;border-radius:15px;box-shadow:0 2px 12px #ccc;">
-
-  <h2>🛍️ K-Mart Seller Panel</h2>
-
-  <input type="password" id="sellerPinInput"
-         placeholder="Seller PIN"
-         style="width:100%;padding:12px;margin:10px 0;">
-
-  <button onclick="openSellerPanel()"
-          style="padding:12px 20px;">
-    🔐 Seller Login
-  </button>
-
-  <div id="sellerForm" style="display:none;margin-top:20px;">
-
-    <input type="text" id="productName"
-           placeholder="Product Name"
-           style="width:100%;padding:12px;margin:7px 0;">
-
-    <input type="number" id="productPrice"
-           placeholder="Price ₹"
-           style="width:100%;padding:12px;margin:7px 0;">
-
-    <input type="file" id="productPhoto"
-           accept="image/*"
-           style="width:100%;padding:12px;margin:7px 0;">
-
-    <button onclick="addSellerProduct()"
-            style="padding:12px 20px;margin-top:10px;">
-      ➕ Add Product
-    </button>
-
-  </div>
-</div>
-
-<script>
-function openSellerPanel() {
-  const pin = document.getElementById("sellerPinInput").value;
-
-  if (pin === "NK99@#") {
-    document.getElementById("sellerForm").style.display = "block";
     alert("Seller Login Successful!");
-  } else {
+
+  }else{
+
     alert("Wrong Seller PIN!");
+
   }
 }
 
-function addSellerProduct() {
-  const name = document.getElementById("productName").value;
-  const price = document.getElementById("productPrice").value;
-  const photo = document.getElementById("productPhoto").files[0];
+function addProduct(){
 
-  if (!name || !price || !photo) {
-    alert("Product name, price aur photo select karo.");
+  const name =
+    document.getElementById("productName").value.trim();
+
+  const price =
+    document.getElementById("productPrice").value;
+
+  const image =
+    document.getElementById("productImage").value.trim();
+
+  if(!name || !price || !image){
+
+    alert("Product name, price aur image URL fill karo.");
+
     return;
   }
 
-  alert("Product ready hai: " + name + " - ₹" + price);
+  const products =
+    document.getElementById("products");
+
+  const card =
+    document.createElement("div");
+
+  card.className = "card";
+
+  card.innerHTML = `
+    <img src="${image}" alt="${name}">
+    <h3>${name}</h3>
+    <p class="price">₹${price}</p>
+    <button class="buy"
+      onclick="buyNow('${name.replace(/'/g,"\\'")}',${price})">
+      ⚡ Buy Now
+    </button>
+  `;
+
+  products.appendChild(card);
+
+  document.getElementById("productName").value = "";
+  document.getElementById("productPrice").value = "";
+  document.getElementById("productImage").value = "";
+
+  alert("✅ Product added!");
 }
+
 </script>
+
 </body>
 </html>
