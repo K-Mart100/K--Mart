@@ -394,12 +394,19 @@ placeholder="Product Name">
 type="number"
 id="productPrice"
 placeholder="Price ₹">
-
+<textarea
+id="productDetails"
+placeholder="Product Details"
+style="width:100%;padding:12px;margin:7px 0;border:1px solid #ccc;border-radius:6px;"></textarea>
 <input
 type="url"
 id="productImage"
 placeholder="Product Image URL">
-
+<input
+type="number"
+id="productStock"
+placeholder="Stock Quantity"
+min="0">
 <button onclick="addProduct()">
 ➕ Add Product
 </button>
@@ -644,13 +651,14 @@ document.getElementById("productName").value.trim();
 
 const price=
 document.getElementById("productPrice").value;
-
+const details=
+document.getElementById("productDetails").value.trim();
 const image=
 document.getElementById("productImage").value.trim();
-
-if(!name||!price||!image){
-
-alert("⚠️ Product name, price aur image URL fill karo.");
+const stock=
+document.getElementById("productStock").value;
+if(!name||!price||!details||!image||stock===""){
+alert("⚠️ Product name, price, details, image URL aur stock fill karo.");
 
 return;
 
@@ -666,7 +674,8 @@ card.innerHTML=`
 <img src="${image}" alt="${name}">
 
 <h3>${name}</h3>
-
+<p>${details}</p>
+<p>📦 Stock: ${stock}</p>
 <p class="price">₹${price}</p>
 
 <div class="buttons">
@@ -694,7 +703,8 @@ document.getElementById("products").appendChild(card);
 document.getElementById("productName").value="";
 document.getElementById("productPrice").value="";
 document.getElementById("productImage").value="";
-
+document.getElementById("productDetails").value="";
+document.getElementById("productStock").value="";
 alert("✅ Product added!");
 
 }
