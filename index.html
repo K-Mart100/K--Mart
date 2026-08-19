@@ -700,6 +700,41 @@ alert("✅ Product added!");
 }
 
 </script>
+<section class="checkout">
+  <h2>👤 K-Mart Customer Account</h2>
 
+  <p id="loginStatus" style="margin:10px 0;">
+    🔴 Not logged in
+  </p>
+
+  <input
+    id="customerEmail"
+    type="email"
+    placeholder="Email Address">
+
+  <input
+    id="customerPassword"
+    type="password"
+    placeholder="Password">
+
+  <button
+    class="place"
+    onclick="kmartSignup()">
+    📝 Create Account
+  </button>
+
+  <button
+    class="place"
+    onclick="kmartLogin()"
+    style="margin-top:8px;">
+    🔐 Login
+  </button>
+
+  <button
+    onclick="kmartLogout()"
+    style="width:100%;padding:12px;margin-top:8px;">
+    Logout
+  </button>
+</section>
 </body>
   </html>
