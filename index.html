@@ -746,5 +746,18 @@ alert("✅ Product added!");
     Logout
   </button>
 </section>
+  <script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function() {
+    navigator.serviceWorker.register("./sw.js")
+      .then(function() {
+        console.log("K-Mart Service Worker Registered");
+      })
+      .catch(function(error) {
+        console.log("Service Worker Error:", error);
+      });
+  });
+}
+  </script>
 </body>
   </html>
