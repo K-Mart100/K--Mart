@@ -1,0 +1,9 @@
+{
+  "name": "K-Mart Online Shopping",
+  "short_name": "K-Mart",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f1f3f6",
+  "theme_color": "#2874f0",
+  "description": "K-Mart - Your trusted online shopping store"
+}
