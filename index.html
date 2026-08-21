@@ -47,7 +47,7 @@ window.kmartSignup = async function() {
 
 window.kmartLogin = async function() {
   const email = document.getElementById("customerEmail").value.trim();
-  const password = docuiment.getElementById("customerPassword").value;
+  
 
   if (!email || !password) {
     alert("Email aur password enter karo.");
@@ -70,7 +70,7 @@ onAuthStateChanged(auth, (user) => {
   const status = document.getElementById("loginStatus");
 
   if (status) {
-    status.innerText = user
+    status.innerText = userconst password = document.getElementById("customerPassword").value;
       ? "🟢 Logged in: " + user.email
       : "🔴 Not logged in";
   }
