@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>K-Mart | Online Shopping</title>
 <script type="module">
+<script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 import {
@@ -47,7 +48,7 @@ window.kmartSignup = async function() {
 
 window.kmartLogin = async function() {
   const email = document.getElementById("customerEmail").value.trim();
-  
+  const password = document.getElementById("customerPassword").value;
 
   if (!email || !password) {
     alert("Email aur password enter karo.");
@@ -63,16 +64,24 @@ window.kmartLogin = async function() {
 };
 
 window.kmartLogout = async function() {
-  await signOut(auth);
+  try {
+    await signOut(auth);
+    alert("✅ Logged out!");
+  } catch (error) {
+    alert("❌ " + error.message);
+  }
 };
 
 onAuthStateChanged(auth, (user) => {
   const status = document.getElementById("loginStatus");
 
   if (status) {
-    status.innerText = userconst password = document.getElementById("customerPassword").value;
+    status.innerText = user
       ? "🟢 Logged in: " + user.email
       : "🔴 Not logged in";
+  }
+});
+</script>
   }
 });
 </script>
