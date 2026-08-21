@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+8<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -14,15 +14,15 @@ import {
   signOut,
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBIwRixXSemSVhvwSZdaB7bGdJRl6IL0_k",
-  authDomain: "k-mart-a6207.firebaseapp.com",
-  projectId: "k-mart-a6207",
-  storageBucket: "k-mart-a6207.firebasestorage.app",
-  messagingSenderId: "1021297895091",
-  appId: "1:1021297895091:web:f8db460eed326078dd32c6",
-  measurementId: "G-MP6FK1QS4E"
-};
+  apiKey: "AIzaSyC1cA4QTHLqHutL0BCbs77MjTdpjBA0uQw",
+  authDomain: "k-mart-cb6cf.firebaseapp.com",
+  projectId: "k-mart-cb6cf",
+  storageBucket: "k-mart-cb6cf.firebasestorage.app",
+  messagingSenderId: "187616753212",
+  appId: "1:187616753212:web:a036ca693b9a52673cf539",
+  measurementId: "G-PYQNK97XXP"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -47,7 +47,7 @@ window.kmartSignup = async function() {
 
 window.kmartLogin = async function() {
   const email = document.getElementById("customerEmail").value.trim();
-  const password = document.getElementById("customerPassword").value;
+  const password = docuiment.getElementById("customerPassword").value;
 
   if (!email || !password) {
     alert("Email aur password enter karo.");
